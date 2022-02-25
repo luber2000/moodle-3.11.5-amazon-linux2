@@ -25,17 +25,9 @@ sudo chown -R moodle:nginx www
 sudo chown -R moodle:nginx /var/www/moodledata/
 sudo chmod g+w moodledata/
 
-
-### Conf Language
-# Descargar lenguaje es de su página web
-sudo mv es /var/www/moodledata/lang/
-cd /var/www/moodledata/lang/
-sudo chown -R moodle:moodle es
-
-
+### Reiniciar servicios
 sudo service nginx restart
 sudo service php-fpm restart
-
 
 ### Cron Set Up
 #sudo su

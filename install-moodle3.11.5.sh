@@ -27,13 +27,21 @@ sudo yum install mysql-community-server -y
 sudo systemctl enable --now mysqld
 sudo service mysqld start
 
-### configuración de moodle
+#### configuración de moodle
 cd /var/
 sudo mkdir www
 cd www
+
+## Descarga  de los archivos de moodle version 3.11.5
+sudo wget https://download.moodle.org/stable311/moodle-3.11.5.tgz
+sudo tar xfz moodle-3.11.5.tgz
+sudo rm moodle-3.11.5.tgz
+
+## Descarga de idioma español
 sudo mkdir moodledata
 cd moodledata
 sudo mkdir lang
-
-## Clonando los archivos de moodle version 3.11.5
-sudo git clone -b MOODLE_311_STABLE git://git.moodle.org/moodle.git 
+cd lang
+sudo wget https://download.moodle.org/langpack/3.11/es.zip
+sudo unzip es.zip
+sudo rm es.zip
