@@ -1,0 +1,43 @@
+### Conf database
+sudo grep 'temporary password' /var/log/mysqld.log
+sudo mysql_secure_installation
+mysql -u root -p
+
+# nbv!uec0xdn7FWC6kyb
+
+### Create Database 
+# CREATE DATABASE moodle DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+### Create User
+CREATE USER 'moodleuser' IDENTIFIED BY 'nbv!uec0xdn7FWC6kyb';
+GRANT ALL privileges ON `moodle`.* TO 'moodleuser';
+
+### Configurar accesos en config.php
+
+### Conf moodle user
+sudo adduser moodle
+sudo passwd moodle
+sudo usermod -a -G moodle nginx
+
+### Permisos www
+cd /var/
+sudo chown -R moodle:nginx www
+sudo chown -R moodle:nginx /var/www/moodledata/
+sudo chmod g+w moodledata/
+
+
+### Conf Language
+# Descargar lenguaje es de su página web
+sudo mv es /var/www/moodledata/lang/
+cd /var/www/moodledata/lang/
+sudo chown -R moodle:moodle es
+
+
+sudo service nginx restart
+sudo service php-fpm restart
+
+
+### Cron Set Up
+#sudo su
+#crontab -e
+# * * * * *    /usr/bin/php /var/www/moodle/admin/cli/cron.php >/dev/null
